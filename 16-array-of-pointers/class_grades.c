@@ -11,6 +11,11 @@ int main(void){
 
     char ** subjects=(char **)malloc(n*sizeof(char));
     for(int i=0; i<n; i++){
+        int l=1;
+        do{
+            printf("Enter length of the subject name (the length must be less than 16)\n");
+            scanf("%d", &l);
+        }while(l<1 || l>15);
         char a=3;
         int k=0;
         //*subjects=NULL;
@@ -28,7 +33,7 @@ int main(void){
             //printf("%c", a);
             printf("%c\n", subjects[i][k]);
             k++;
-        }while(a!='\n' && k<15);
+        }while(a!='\n' && k<l);
         printf("%c\n", subjects[i][k-1]);
         printf("%d\n", subjects[i][k-1]);
         if(subjects[i][k]=='\n'){
@@ -80,12 +85,19 @@ int main(void){
         if(students[m-1][k-1]=='\n'){
             students[m][k-1]='\0';
         }*/
+        if(m>0){
+            char ** students=(char **)realloc(students, m*sizeof(char));
+            int ** grades=(int **)realloc(grades, m*sizeof(int));
+        }
         if(option=='n'){
 
             m++;
-            char ** students=(char **)realloc(students, m*sizeof(char));
             //students;
-
+            int l=1;
+            do{
+                printf("Enter length of the student's name (the length must be less than 16)\n");
+                scanf("%d", &l);
+            }while(l<1 || l>15);
             int k=0;
             char a=0;
             printf("Enter student\n");
@@ -101,7 +113,7 @@ int main(void){
                 students[m-1][k]=a;
                 printf("%c", a);
                 k++;
-            }while(a!='\n' && k<15);
+            }while(a!='\n' && k<l);
             if(students[m-1]==NULL){
                 printf("Error allocating memory\n");
                 exit(1);
@@ -111,7 +123,6 @@ int main(void){
                 students[m][k-1]='\0';
             }
 
-            int ** grades=(int **)realloc(grades, m*sizeof(int));
             for(int i=0; i<m; i++){
                 grades[i]=(int *)realloc(grades[i], n*sizeof(int *));
             }
@@ -121,7 +132,7 @@ int main(void){
                 scanf("%d", &grades[m-1][i]);
             }
             for(int i=0; i<m; i++){
-                printf("%p\n", students[i]);
+                printf("%s\n", students[i]);
             }
             if(students[m-1]==NULL){
                 printf("Error allocating memory\n");
@@ -143,9 +154,9 @@ int main(void){
             printf("\n");
             for(int i=0; i<m; i++){
                 printf("%s", students[i]);
-                /*for(int j; j<n; j++){
-                    printf("%d", grades[i][j]);
-                }*/
+                for(int j=0; j<n; j++){
+                    printf(" %d", grades[i][j]);
+                }
                 printf("\n");
             }
 
@@ -167,6 +178,10 @@ int main(void){
 
         }else{
             printf("Incorrect option\n");
+            if(students[m-1]==NULL){
+                printf("Error allocating memory\n");
+                exit(1);
+            }
         }
 
     }
