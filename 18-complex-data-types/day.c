@@ -12,7 +12,9 @@ enum Day{
 
 int main(void){
     int n;
+    printf("Enter number of a day\n");
     scanf("%d", &n);
+
     enum Day d=n;
     switch(d){
         case Monday: printf("Monday\n"); break;
