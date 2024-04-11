@@ -41,7 +41,6 @@ int main(void){
             getchar();
             do{
                 a=getchar();
-                //students[n-1].name=(char *)realloc(students[n-1].name, k*sizeof(char));
                 if(students[n-1].name==NULL){
                     printf("Error allocating memory\n");
                     exit(1);
@@ -70,15 +69,12 @@ int main(void){
         }else if(option=='p'){
             if(n>0){
                 for(int i=0; i<n; i++){
-                    printf("Name: %s Number: %d Average Grade: %lf\n", students[i].name, students[i].number, students[i].averageGrade);
+                    printf("Name: %s; Number: %d; Average Grade: %lf;\n", students[i].name, students[i].number, students[i].averageGrade);
                 }
             }else{
                 printf("There are no students\n");
             }
         }else if(option=='q'){
-            /*for(int i=0; i<n; i++){
-                free(students[i].name);
-            }*/
             free(students);
             break;
         }else{
